@@ -1,2 +1,0 @@
-class Vecino < ApplicationRecord
-end
