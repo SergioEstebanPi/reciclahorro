@@ -1,0 +1,2 @@
+module VecinosHelper
+end
