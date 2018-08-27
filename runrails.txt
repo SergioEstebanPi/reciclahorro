@@ -1,2 +1,18 @@
+# configura devise
+gem 'devise'
+bundle install
+rails g devise:install
+rails g devise Usuario
+rails g devise:views
+
+#configure postgresql
+gem 'pg'
+bundle install
+rake db:setup
+rake db:migrate
+rake routes
+
+#
+
 rake db:migrate
 rails serve
