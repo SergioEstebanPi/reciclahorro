@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180828054640) do
+ActiveRecord::Schema.define(version: 20180828061407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "solicitud", force: :cascade do |t|
+    t.string "titulo"
+    t.text "descripcion"
+    t.date "fecha_recoleccion"
+    t.bigint "usuario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_solicitud_on_usuario_id"
+  end
 
   create_table "solicitudes", id: false, force: :cascade do |t|
     t.bigserial "id", null: false
@@ -24,6 +34,16 @@ ActiveRecord::Schema.define(version: 20180828054640) do
     t.datetime "updated_at", null: false
     t.bigint "vecino_id"
     t.index ["vecino_id"], name: "index_solicitudes_on_vecino_id"
+  end
+
+  create_table "solicituds", force: :cascade do |t|
+    t.string "titulo"
+    t.text "descripcion"
+    t.date "fecha_recoleccion"
+    t.bigint "usuario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_solicituds_on_usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
@@ -49,5 +69,7 @@ ActiveRecord::Schema.define(version: 20180828054640) do
     t.index ["usuario_id"], name: "index_vecinos_on_usuario_id"
   end
 
+  add_foreign_key "solicitud", "usuarios"
+  add_foreign_key "solicituds", "usuarios"
   add_foreign_key "vecinos", "usuarios"
 end
