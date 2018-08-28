@@ -1,0 +1,2 @@
+class Recolector < ApplicationRecord
+end

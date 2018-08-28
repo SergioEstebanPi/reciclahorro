@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Recolectors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombres</th>
+      <th>Apellidos</th>
+      <th>Fecha nacimiento</th>
+      <th>Empresa</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @recolectors.each do |recolector| %>
+      <tr>
+        <td><%= recolector.nombres %></td>
+        <td><%= recolector.apellidos %></td>
+        <td><%= recolector.fecha_nacimiento %></td>
+        <td><%= recolector.empresa %></td>
+        <td><%= link_to 'Show', recolector %></td>
+        <td><%= link_to 'Edit', edit_recolector_path(recolector) %></td>
+        <td><%= link_to 'Destroy', recolector, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Recolector', new_recolector_path %>

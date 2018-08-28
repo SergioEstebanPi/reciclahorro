@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :entregas
+  resources :recolectors
   resources :solicituds
   resources :solicitud
   resources :vecinos

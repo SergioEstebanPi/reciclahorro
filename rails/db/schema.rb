@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180828061407) do
+ActiveRecord::Schema.define(version: 20180828062850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "entregas", force: :cascade do |t|
+    t.bigint "vecino_id"
+    t.bigint "recolector_id"
+    t.string "estado"
+    t.float "peso"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recolector_id"], name: "index_entregas_on_recolector_id"
+    t.index ["vecino_id"], name: "index_entregas_on_vecino_id"
+  end
+
+  create_table "recolectors", force: :cascade do |t|
+    t.string "nombres"
+    t.string "apellidos"
+    t.date "fecha_nacimiento"
+    t.string "empresa"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "solicitud", force: :cascade do |t|
     t.string "titulo"
@@ -69,6 +89,8 @@ ActiveRecord::Schema.define(version: 20180828061407) do
     t.index ["usuario_id"], name: "index_vecinos_on_usuario_id"
   end
 
+  add_foreign_key "entregas", "recolectors"
+  add_foreign_key "entregas", "vecinos"
   add_foreign_key "solicitud", "usuarios"
   add_foreign_key "solicituds", "usuarios"
   add_foreign_key "vecinos", "usuarios"

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Vecino:</strong>
+  <%= @entrega.vecino %>
+</p>
+
+<p>
+  <strong>Recolector:</strong>
+  <%= @entrega.recolector %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @entrega.estado %>
+</p>
+
+<p>
+  <strong>Peso:</strong>
+  <%= @entrega.peso %>
+</p>
+
+<%= link_to 'Edit', edit_entrega_path(@entrega) %> |
+<%= link_to 'Back', entregas_path %>
