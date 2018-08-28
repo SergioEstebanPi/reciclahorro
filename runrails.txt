@@ -13,6 +13,13 @@ rake db:migrate
 rake routes
 
 #
-
 rake db:migrate
 rails serve
+
+#
+rails g scaffold vecino 
+	documento:string 
+	nombres:string 
+	apellidos:string 
+	fecha_nacimiento:date 
+	usuario:references
