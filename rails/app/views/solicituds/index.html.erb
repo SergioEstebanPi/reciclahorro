@@ -18,9 +18,9 @@
         <td><%= solicitud.titulo %></td>
         <td><%= solicitud.descripcion %></td>
         <td><%= solicitud.fecha_recoleccion %></td>
-        <td><%= link_to 'Show', solicitud %></td>
-        <td><%= link_to 'Edit', edit_solicitud_path(solicitud) %></td>
-        <td><%= link_to 'Destroy', solicitud, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', solicitud %></td>
+        <td><%= link_to 'Editar', edit_solicitud_path(solicitud) %></td>
+        <td><%= link_to 'Eliminar', solicitud, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>

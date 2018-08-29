@@ -18,9 +18,9 @@
         <td><%= entrega.vecino %></td>
         <td><%= entrega.estado %></td>
         <td><%= entrega.peso %></td>
-        <td><%= link_to 'Show', entrega %></td>
-        <td><%= link_to 'Edit', edit_entrega_path(entrega) %></td>
-        <td><%= link_to 'Destroy', entrega, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', entrega %></td>
+        <td><%= link_to 'Editar', edit_entrega_path(entrega) %></td>
+        <td><%= link_to 'Eliminar', entrega, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Entrega', new_entrega_path %>
+<%= link_to 'Crear Entrega', new_entrega_path %>

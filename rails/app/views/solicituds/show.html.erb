@@ -1,19 +1,26 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Titulo:</strong>
-  <%= @solicitud.titulo %>
-</p>
+<div class="card">
+    <div class="card-header">
+      Detalle
+    </div>
+    <div class="card-body">
+        <p>
+          <strong>Titulo:</strong>
+          <%= @solicitud.titulo %>
+        </p>
+        
+        <p>
+          <strong>Descripcion:</strong>
+          <%= @solicitud.descripcion %>
+        </p>
+        
+        <p>
+          <strong>Fecha recoleccion:</strong>
+          <%= @solicitud.fecha_recoleccion %>
+        </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Descripcion:</strong>
-  <%= @solicitud.descripcion %>
-</p>
-
-<p>
-  <strong>Fecha recoleccion:</strong>
-  <%= @solicitud.fecha_recoleccion %>
-</p>
-
-<%= link_to 'Edit', edit_solicitud_path(@solicitud) %> |
-<%= link_to 'Back', solicituds_path %>
+<%= link_to 'Editar', edit_solicitud_path(@solicitud) %> |
+<%= link_to 'Atrás', solicituds_path %>

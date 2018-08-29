@@ -1,19 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Vecino:</strong>
-  <%= @entrega.vecino %>
-</p>
+<div class="card">
+    <div class="card-header">
+      Detalle
+    </div>
+    <div class="card-body">
+        <p>
+          <strong>Vecino:</strong>
+          <%= @entrega.vecino %>
+        </p>
+        
+        <p>
+          <strong>Estado:</strong>
+          <%= @entrega.estado %>
+        </p>
+        
+        <p>
+          <strong>Peso:</strong>
+          <%= @entrega.peso %>
+        </p>
+    </div>
+  </div>
 
-<p>
-  <strong>Estado:</strong>
-  <%= @entrega.estado %>
-</p>
 
-<p>
-  <strong>Peso:</strong>
-  <%= @entrega.peso %>
-</p>
 
-<%= link_to 'Edit', edit_entrega_path(@entrega) %> |
-<%= link_to 'Back', entregas_path %>
+<%= link_to 'Editar', edit_entrega_path(@entrega) %> |
+<%= link_to 'Atrás', entregas_path %>
