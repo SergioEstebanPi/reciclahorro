@@ -2,11 +2,10 @@
 
 <h1>Entregas</h1>
 
-<table>
-  <thead>
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
     <tr>
       <th>Vecino</th>
-      <th>Recolector</th>
       <th>Estado</th>
       <th>Peso</th>
       <th colspan="3"></th>
@@ -17,7 +16,6 @@
     <% @entregas.each do |entrega| %>
       <tr>
         <td><%= entrega.vecino %></td>
-        <td><%= entrega.recolector %></td>
         <td><%= entrega.estado %></td>
         <td><%= entrega.peso %></td>
         <td><%= link_to 'Show', entrega %></td>

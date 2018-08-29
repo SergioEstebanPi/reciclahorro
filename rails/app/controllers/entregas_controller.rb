@@ -25,6 +25,7 @@ class EntregasController < ApplicationController
   # POST /entregas.json
   def create
     @entrega = Entrega.new(entrega_params)
+    @entrega.recolector_id = current_usuario.id
 
     respond_to do |format|
       if @entrega.save

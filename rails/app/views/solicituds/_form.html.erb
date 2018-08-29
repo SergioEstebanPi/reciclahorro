@@ -3,11 +3,13 @@
     <div id="error_explanation">
       <h2><%= pluralize(solicitud.errors.count, "error") %> prohibited this solicitud from being saved:</h2>
 
-      <ul>
-      <% solicitud.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <div class="alert alert-danger">
+        <ul>
+        <% solicitud.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
@@ -24,11 +26,6 @@
   <div class="field">
     <%= form.label :fecha_recoleccion %>
     <%= form.date_select :fecha_recoleccion, id: :solicitud_fecha_recoleccion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :usuario_id %>
-    <%= form.text_field :usuario_id, id: :solicitud_usuario_id %>
   </div>
 
   <div class="actions">

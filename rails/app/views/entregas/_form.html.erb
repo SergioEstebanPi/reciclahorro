@@ -3,22 +3,20 @@
     <div id="error_explanation">
       <h2><%= pluralize(entrega.errors.count, "error") %> prohibited this entrega from being saved:</h2>
 
-      <ul>
-      <% entrega.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+      <div class="alert alert-danger">
+          <ul>
+              <% entrega.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+      </div>
+      
     </div>
   <% end %>
 
   <div class="field">
     <%= form.label :vecino_id %>
     <%= form.text_field :vecino_id, id: :entrega_vecino_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :recolector_id %>
-    <%= form.text_field :recolector_id, id: :entrega_recolector_id %>
   </div>
 
   <div class="field">

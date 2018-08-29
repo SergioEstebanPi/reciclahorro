@@ -24,7 +24,9 @@ class SolicitudsController < ApplicationController
   # POST /solicituds
   # POST /solicituds.json
   def create
+
     @solicitud = Solicitud.new(solicitud_params)
+    @solicitud.usuario_id = current_usuario.id
 
     respond_to do |format|
       if @solicitud.save
