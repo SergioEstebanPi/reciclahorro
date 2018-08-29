@@ -1,0 +1,32 @@
+<%= form_with(model: residuo, local: true) do |form| %>
+  <% if residuo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(residuo.errors.count, "error") %> prohibited this residuo from being saved:</h2>
+
+      <ul>
+      <% residuo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tiporesiduo_id %>
+    <%= form.text_field :tiporesiduo_id, id: :residuo_tiporesiduo_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :residuo_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :residuo_descripcion %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

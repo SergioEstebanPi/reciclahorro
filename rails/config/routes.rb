@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :sectors
+  resources :puntorecoleccions
+  resources :productos
+  resources :tipoproductos
+  resources :oferta
+  resources :residuos
+  resources :tiporesiduos
+  resources :almacens
+  resources :tipoalmacens
+  resources :zonas
   resources :entregas
   resources :recolectors
   resources :solicituds

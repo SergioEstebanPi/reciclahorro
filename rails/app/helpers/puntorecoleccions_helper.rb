@@ -1,0 +1,2 @@
+module PuntorecoleccionsHelper
+end

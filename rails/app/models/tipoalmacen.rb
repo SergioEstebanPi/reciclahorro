@@ -1,0 +1,2 @@
+class Tipoalmacen < ApplicationRecord
+end

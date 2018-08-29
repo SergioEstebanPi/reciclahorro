@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Residuos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tiporesiduo</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @residuos.each do |residuo| %>
+      <tr>
+        <td><%= residuo.tiporesiduo %></td>
+        <td><%= residuo.nombre %></td>
+        <td><%= residuo.descripcion %></td>
+        <td><%= link_to 'Show', residuo %></td>
+        <td><%= link_to 'Edit', edit_residuo_path(residuo) %></td>
+        <td><%= link_to 'Destroy', residuo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Residuo', new_residuo_path %>

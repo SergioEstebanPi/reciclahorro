@@ -1,0 +1,47 @@
+<%= form_with(model: almacen, local: true) do |form| %>
+  <% if almacen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(almacen.errors.count, "error") %> prohibited this almacen from being saved:</h2>
+
+      <ul>
+      <% almacen.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :tipoalmacen_id %>
+    <%= form.text_field :tipoalmacen_id, id: :almacen_tipoalmacen_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :almacen_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :almacen_descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :direccion %>
+    <%= form.text_field :direccion, id: :almacen_direccion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latitud %>
+    <%= form.text_field :latitud, id: :almacen_latitud %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitud %>
+    <%= form.text_field :longitud, id: :almacen_longitud %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

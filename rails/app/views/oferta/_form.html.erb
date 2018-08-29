@@ -1,0 +1,57 @@
+<%= form_with(model: ofertum, local: true) do |form| %>
+  <% if ofertum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ofertum.errors.count, "error") %> prohibited this ofertum from being saved:</h2>
+
+      <ul>
+      <% ofertum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :almacen_id %>
+    <%= form.text_field :almacen_id, id: :ofertum_almacen_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :residuo_id %>
+    <%= form.text_field :residuo_id, id: :ofertum_residuo_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo, id: :ofertum_titulo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :ofertum_descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descuento %>
+    <%= form.text_field :descuento, id: :ofertum_descuento %>
+  </div>
+
+  <div class="field">
+    <%= form.label :estado %>
+    <%= form.text_field :estado, id: :ofertum_estado %>
+  </div>
+
+  <div class="field">
+    <%= form.label :peso %>
+    <%= form.text_field :peso, id: :ofertum_peso %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cantidad %>
+    <%= form.text_field :cantidad, id: :ofertum_cantidad %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
