@@ -4,7 +4,8 @@ class SolicitudsController < ApplicationController
   # GET /solicituds
   # GET /solicituds.json
   def index
-    @solicituds = Solicitud.all
+    #@solicituds = Solicitud.all
+    @solicituds = Solicitud.where(usuario_id: current_usuario.id)
   end
 
   # GET /solicituds/1

@@ -13,22 +13,29 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :titulo %>
-    <%= form.text_field :titulo, id: :solicitud_titulo %>
+<div class="card">
+  <div class="card-header">
+    Crear una solicitud
   </div>
+  <div class="card-body">
+    <div class="form-group">
+      <%= form.label :titulo, label_for: %>
+      <%= form.text_field :titulo, id: :solicitud_titulo, class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :descripcion %>
-    <%= form.text_area :descripcion, id: :solicitud_descripcion %>
-  </div>
+    <div class="field">
+      <%= form.label :descripcion %>
+      <%= form.text_area :descripcion, id: :solicitud_descripcion, class:"form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :fecha_recoleccion %>
-    <%= form.date_select :fecha_recoleccion, id: :solicitud_fecha_recoleccion %>
-  </div>
+    <div class="field">
+      <%= form.label :fecha_recoleccion %>
+      <%= form.date_select :fecha_recoleccion, id: :solicitud_fecha_recoleccion, class:"form-control" %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit nil,:class => 'btn btn-primary' %>
+    </div>
   </div>
+</div>
 <% end %>
