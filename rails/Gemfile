@@ -58,4 +58,6 @@ gem 'pg'
 gem 'letter_opener', :group => :development # simula el envio de mensajes
 gem 'delayed_job_active_record' # notificaciones en cola de trabajo para procesos secundarios
 # bootstrap
-gem 'bootstrap', '~> 4.0.0'
+#gem 'bootstrap-sass'#, '~> 3.3.
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'

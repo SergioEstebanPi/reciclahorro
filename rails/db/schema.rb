@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180829041829) do
+ActiveRecord::Schema.define(version: 20180907020207) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,12 +76,11 @@ ActiveRecord::Schema.define(version: 20180829041829) do
   end
 
   create_table "recolectors", force: :cascade do |t|
-    t.string "nombres"
-    t.string "apellidos"
-    t.date "fecha_nacimiento"
     t.string "empresa"
+    t.bigint "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_recolectors_on_usuario_id"
   end
 
   create_table "residuos", force: :cascade do |t|
@@ -93,41 +92,35 @@ ActiveRecord::Schema.define(version: 20180829041829) do
     t.index ["tiporesiduo_id"], name: "index_residuos_on_tiporesiduo_id"
   end
 
+  create_table "sectores_residuos", force: :cascade do |t|
+    t.bigint "sector_id"
+    t.bigint "residuo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["residuo_id"], name: "index_sectores_residuos_on_residuo_id"
+    t.index ["sector_id"], name: "index_sectores_residuos_on_sector_id"
+  end
+
   create_table "sectors", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
+    t.decimal "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "solicitud", force: :cascade do |t|
-    t.string "titulo"
-    t.text "descripcion"
-    t.date "fecha_recoleccion"
-    t.bigint "usuario_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["usuario_id"], name: "index_solicitud_on_usuario_id"
-  end
-
-  create_table "solicitudes", id: false, force: :cascade do |t|
-    t.bigserial "id", null: false
-    t.string "titulo"
-    t.text "descripcion"
-    t.decimal "estado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "vecino_id"
-    t.index ["vecino_id"], name: "index_solicitudes_on_vecino_id"
   end
 
   create_table "solicituds", force: :cascade do |t|
     t.string "titulo"
     t.text "descripcion"
+    t.string "horario"
+    t.string "estado"
+    t.date "fecha_solicitud"
     t.date "fecha_recoleccion"
     t.bigint "usuario_id"
+    t.bigint "recolector_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["recolector_id"], name: "index_solicituds_on_recolector_id"
     t.index ["usuario_id"], name: "index_solicituds_on_usuario_id"
   end
 
@@ -155,9 +148,20 @@ ActiveRecord::Schema.define(version: 20180829041829) do
   create_table "usuarios", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "rol", default: "1", null: false
+    t.string "nombres", null: false
+    t.string "apellidos", null: false
+    t.string "direccion"
+    t.date "fecha_nacimiento"
+    t.string "doc_identidad"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_usuarios_on_email", unique: true
@@ -165,14 +169,19 @@ ActiveRecord::Schema.define(version: 20180829041829) do
   end
 
   create_table "vecinos", force: :cascade do |t|
-    t.string "documento"
-    t.string "nombres"
-    t.string "apellidos"
-    t.date "fecha_nacimiento"
     t.bigint "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["usuario_id"], name: "index_vecinos_on_usuario_id"
+  end
+
+  create_table "vecinossectores", force: :cascade do |t|
+    t.bigint "vecino_id"
+    t.bigint "sector_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sector_id"], name: "index_vecinossectores_on_sector_id"
+    t.index ["vecino_id"], name: "index_vecinossectores_on_vecino_id"
   end
 
   create_table "zonas", force: :cascade do |t|
@@ -189,8 +198,13 @@ ActiveRecord::Schema.define(version: 20180829041829) do
   add_foreign_key "oferta", "residuos"
   add_foreign_key "productos", "tipoproductos"
   add_foreign_key "puntorecoleccions", "zonas"
+  add_foreign_key "recolectors", "usuarios"
   add_foreign_key "residuos", "tiporesiduos"
-  add_foreign_key "solicitud", "usuarios"
+  add_foreign_key "sectores_residuos", "residuos"
+  add_foreign_key "sectores_residuos", "sectors"
+  add_foreign_key "solicituds", "recolectors"
   add_foreign_key "solicituds", "usuarios"
   add_foreign_key "vecinos", "usuarios"
+  add_foreign_key "vecinossectores", "sectors"
+  add_foreign_key "vecinossectores", "vecinos"
 end

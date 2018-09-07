@@ -26,9 +26,11 @@
                   <li>
                     <%= link_to "Solicitudes", solicituds_path, class: "nav-link" %>                
                   </li>
+                  <% if current_usuario.rol = '2' %>
                   <li>
                     <%= link_to "Entregas", entregas_path, class: "nav-link" %>                
                   </li>
+                  <% end %>
                   <li>
                     <%= link_to "Sectores", sectors_path, class: "nav-link" %>                
                   </li>
