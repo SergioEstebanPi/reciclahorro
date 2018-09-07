@@ -1,0 +1,42 @@
+<%= form_with(model: noticium, local: true) do |form| %>
+  <% if noticium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(noticium.errors.count, "error") %> prohibited this noticium from being saved:</h2>
+
+      <ul>
+      <% noticium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :usuario_id %>
+    <%= form.text_field :usuario_id, id: :noticium_usuario_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo, id: :noticium_titulo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_area :descripcion, id: :noticium_descripcion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :imagen %>
+    <%= form.text_area :imagen, id: :noticium_imagen %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tipo %>
+    <%= form.text_field :tipo, id: :noticium_tipo %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
