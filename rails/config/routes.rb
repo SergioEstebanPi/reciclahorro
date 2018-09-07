@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :noticia
+  resources :comentarios
+  resources :publicacions
   resources :sectors
   resources :puntorecoleccions
   resources :productos

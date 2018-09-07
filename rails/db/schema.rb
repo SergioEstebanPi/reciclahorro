@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180907020207) do
+ActiveRecord::Schema.define(version: 20180907024408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,15 +27,38 @@ ActiveRecord::Schema.define(version: 20180907020207) do
     t.index ["tipoalmacen_id"], name: "index_almacens_on_tipoalmacen_id"
   end
 
+  create_table "comentarios", force: :cascade do |t|
+    t.bigint "usuario_id"
+    t.bigint "publicacion_id"
+    t.text "descripcion"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["publicacion_id"], name: "index_comentarios_on_publicacion_id"
+    t.index ["usuario_id"], name: "index_comentarios_on_usuario_id"
+  end
+
   create_table "entregas", force: :cascade do |t|
     t.bigint "vecino_id"
     t.bigint "recolector_id"
+    t.bigint "residuo_id"
     t.string "estado"
     t.float "peso"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["recolector_id"], name: "index_entregas_on_recolector_id"
+    t.index ["residuo_id"], name: "index_entregas_on_residuo_id"
     t.index ["vecino_id"], name: "index_entregas_on_vecino_id"
+  end
+
+  create_table "noticia", force: :cascade do |t|
+    t.bigint "usuario_id"
+    t.string "titulo"
+    t.text "descripcion"
+    t.text "imagen"
+    t.decimal "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_noticia_on_usuario_id"
   end
 
   create_table "oferta", force: :cascade do |t|
@@ -53,14 +76,33 @@ ActiveRecord::Schema.define(version: 20180907020207) do
     t.index ["residuo_id"], name: "index_oferta_on_residuo_id"
   end
 
+  create_table "ofertas_productos", force: :cascade do |t|
+    t.bigint "oferta_id"
+    t.bigint "producto_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["oferta_id"], name: "index_ofertas_productos_on_oferta_id"
+    t.index ["producto_id"], name: "index_ofertas_productos_on_producto_id"
+  end
+
   create_table "productos", force: :cascade do |t|
     t.bigint "tipoproducto_id"
     t.string "nombre"
     t.text "descripcion"
     t.decimal "precio"
+    t.string "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tipoproducto_id"], name: "index_productos_on_tipoproducto_id"
+  end
+
+  create_table "publicacions", force: :cascade do |t|
+    t.string "titulo"
+    t.text "descripcion"
+    t.text "imagen"
+    t.decimal "tipo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "puntorecoleccions", force: :cascade do |t|
@@ -192,10 +234,16 @@ ActiveRecord::Schema.define(version: 20180907020207) do
   end
 
   add_foreign_key "almacens", "tipoalmacens"
+  add_foreign_key "comentarios", "publicacions"
+  add_foreign_key "comentarios", "usuarios"
   add_foreign_key "entregas", "recolectors"
+  add_foreign_key "entregas", "residuos"
   add_foreign_key "entregas", "vecinos"
+  add_foreign_key "noticia", "usuarios"
   add_foreign_key "oferta", "almacens"
   add_foreign_key "oferta", "residuos"
+  add_foreign_key "ofertas_productos", "oferta", column: "oferta_id"
+  add_foreign_key "ofertas_productos", "productos"
   add_foreign_key "productos", "tipoproductos"
   add_foreign_key "puntorecoleccions", "zonas"
   add_foreign_key "recolectors", "usuarios"
