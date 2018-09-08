@@ -1,2 +1,0 @@
-class Publicacion < ApplicationRecord
-end

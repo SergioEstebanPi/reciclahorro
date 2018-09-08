@@ -1,2 +1,0 @@
-class Vecinossectore < ApplicationRecord
-end

@@ -1,2 +1,0 @@
-class Tiporesiduo < ApplicationRecord
-end

@@ -1,2 +1,0 @@
-class OfertasProducto < ApplicationRecord
-end

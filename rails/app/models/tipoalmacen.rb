@@ -1,2 +1,0 @@
-class Tipoalmacen < ApplicationRecord
-end
