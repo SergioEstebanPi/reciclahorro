@@ -97,12 +97,14 @@ ActiveRecord::Schema.define(version: 20180907024408) do
   end
 
   create_table "publicacions", force: :cascade do |t|
+    t.bigint "usuario_id"
     t.string "titulo"
     t.text "descripcion"
     t.text "imagen"
     t.decimal "tipo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["usuario_id"], name: "index_publicacions_on_usuario_id"
   end
 
   create_table "puntorecoleccions", force: :cascade do |t|
@@ -119,6 +121,7 @@ ActiveRecord::Schema.define(version: 20180907024408) do
 
   create_table "recolectors", force: :cascade do |t|
     t.string "empresa"
+    t.string "doc_identidad", null: false
     t.bigint "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -212,6 +215,7 @@ ActiveRecord::Schema.define(version: 20180907024408) do
 
   create_table "vecinos", force: :cascade do |t|
     t.bigint "usuario_id"
+    t.string "doc_identidad", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["usuario_id"], name: "index_vecinos_on_usuario_id"
@@ -245,6 +249,7 @@ ActiveRecord::Schema.define(version: 20180907024408) do
   add_foreign_key "ofertas_productos", "oferta", column: "oferta_id"
   add_foreign_key "ofertas_productos", "productos"
   add_foreign_key "productos", "tipoproductos"
+  add_foreign_key "publicacions", "usuarios"
   add_foreign_key "puntorecoleccions", "zonas"
   add_foreign_key "recolectors", "usuarios"
   add_foreign_key "residuos", "tiporesiduos"

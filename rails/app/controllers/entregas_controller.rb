@@ -25,7 +25,8 @@ class EntregasController < ApplicationController
   # POST /entregas.json
   def create
     @entrega = Entrega.new(entrega_params)
-    @entrega.recolector_id = current_usuario.id
+    @entrega.recolector_id = 2#Recolector.where(usuario_id: current_usuario.id).pluck(:id)
+    #@entrega.recolector_id = 2
 
     respond_to do |format|
       if @entrega.save
@@ -70,6 +71,6 @@ class EntregasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def entrega_params
-      params.require(:entrega).permit(:vecino_id, :recolector_id, :estado, :peso)
+      params.require(:entrega).permit(:vecino_id, :recolector_id, :residuo_id, :estado, :peso)
     end
 end

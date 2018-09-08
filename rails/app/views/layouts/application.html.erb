@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+      }
+    </style>
     <title>Reciclahorro</title>
     <%= csrf_meta_tags %>
 
@@ -10,67 +17,112 @@
 
   <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!-- <a class="navbar-brand" href="#">Reciclahorro</a> -->
-            <%= link_to "Reciclahorro", root_path, class: "navbar-brand" %>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-      
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Noticias <span class="sr-only">(current)</span></a>
+      <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark"> -->
+      <nav class="navbar navbar-expand-lg">
+        <!-- <a class="navbar-brand" href="#">Reciclahorro</a> -->
+        <%= link_to "Reciclahorro", root_path, class: "navbar-brand" %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Noticias <span class="sr-only">(current)</span></a>
+            </li>
+            <% if usuario_signed_in? %>
+              <% if current_usuario.rol == '2' %>
+                <li>
+                  <%= link_to "Entregas", entregas_path, class: "nav-link" %>                
                 </li>
-                <% if usuario_signed_in? %>
+                <% else %>
                   <li>
                     <%= link_to "Solicitudes", solicituds_path, class: "nav-link" %>                
                   </li>
-                  <% if current_usuario.rol = '2' %>
-                  <li>
-                    <%= link_to "Entregas", entregas_path, class: "nav-link" %>                
-                  </li>
-                  <% end %>
-                  <li>
-                    <%= link_to "Sectores", sectors_path, class: "nav-link" %>                
-                  </li>
-                  <li>
-                    <%= link_to "Residuos", residuos_path, class: "nav-link" %>                
-                  </li>
-                  <li>
-                    <%= link_to "Zonas", zonas_path, class: "nav-link" %>                
-                  </li>
-                  <li>
-                    <%= link_to "Ofertas", oferta_path, class: "nav-link" %>                
-                  </li>
-                  <li>
-                    <%= link_to "Puntos de recolección", puntorecoleccions_path, class: "nav-link" %>                
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "Cerrar sesión", destroy_usuario_session_path, method: :delete, class: "nav-link" %>
-                  </li>
-                  <li class="nav-item">
-                    <%= link_to "#{current_usuario.email}", root_path, class: "nav-link" %>
-                  </li>
-                <% else %>
-                  <li>
-                    <%= link_to "Iniciar sesión", new_usuario_session_path, class: "nav-link" %>
-                  </li>
-                  <li>
-                    <%= link_to "Crear una cuenta", new_usuario_registration_path, class: "nav-link" %>
-                  </li>
                 <% end %>
-                <!-- <li class="nav-item">
-                  <a class="nav-link disabled" href="#">Disabled</a>
-                </li> -->
-              </ul>
-            </div>
-          </nav>
+                <li>
+                  <%= link_to "Residuos", residuos_path, class: "nav-link" %>                
+                </li>
+                <li>
+                  <%= link_to "Ofertas", oferta_path, class: "nav-link" %>                
+                </li>
+                <li>
+                  <%= link_to "Puntos de recolección", puntorecoleccions_path, class: "nav-link" %>                
+                </li>
+              <% end %>
+          </ul>
+          <% if usuario_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <%= link_to "Cerrar sesión", destroy_usuario_session_path, method: :delete, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "#{current_usuario.email}", root_path, class: "nav-link" %>
+              </li>
+            </ul>
+          <% end %>
+          <% if !usuario_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+              <li>
+                <%= link_to "Iniciar sesión", new_usuario_session_path, class: "nav-link" %>
+              </li>
+              <li>
+                <%= link_to "Crear una cuenta", new_usuario_registration_path, class: "nav-link" %>
+              </li>
+            </ul>
+          <% end %>
+            <!-- <li class="nav-item">
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li> -->
+        </div>
+      </nav>
 
-      <%= yield %>
-      <footer class="fixed-bottom text-center">
-        Reciclahorro@copyright
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 principal">
+                <br>
+                <%= yield %>
+              </div>
+              <div class="col-md-4 sidebar">
+                  <br>
+                  <h3 class="text-center">Cuida el medio ambiente</h3>
+                  <p>Salva el planeta para que las futuras generaciones lo puedan disfrutar al igual que tu lo haces.</p>            
+                  <img src="http://www.maquituls.es/noticias/wp-content/uploads/2017/06/reci.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236"> 
+                  <h3>¿Cómo puedo empezar a reciclar ahorrando?</h3>
+                  <p>Con Reciclahorro obtienes beneficios en almacenes de cadena puedes solicitar la recolección de tus residuos o entregarlos
+                    en los punto de recolección cercanos a tu hogar, posteriormente se te otorgan los beneficios de los cuales puedes disfrutar
+                    según la oferta realizada por el almacen, el tipo de residuo, el estado y la cantidad que se recicle.
+                  </p>
+                  <% if !usuario_signed_in? %>
+                    <h4>¿Ya estás registrado?</h4>
+                    <%= link_to 'Iniciar sesión', usuario_session_path, class:'btn btn-primary' %>
+                  <% end %>
+              </div>
+          
+          </div>
+      </div>
+      <footer class="row footer">
+        <div class="fixed-bottom text-center">
+          <strong>Reciclahorro@copyright</strong>
+        </div>
       </footer>
     </div>
+
+    <script>
+      // Initialize and add the map
+      function initMap() {
+      // The location of Uluru
+      var uluru = {lat: 4.659501, lng: -74.061533};
+      // The map, centered at Uluru
+      var map = new google.maps.Map(
+        document.getElementById('map'), {zoom: 20, center: uluru});
+      // The marker, positioned at Uluru
+      var marker = new google.maps.Marker({position: uluru, map: map});
+      }
+    </script>
+    
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9mUaWlMomL5FtYiaxM2jCefMZsZVZAm4&callback=initMap">
+    </script>
   </body>
 </html>

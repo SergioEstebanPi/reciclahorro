@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Puntorecoleccions</h1>
+<h1>Puntos de recoleccion</h1>
 
+<!--
 <table>
   <thead>
     <tr>
@@ -16,7 +17,10 @@
   </thead>
 
   <tbody>
+  -->
+  <div id="map"></div>
     <% @puntorecoleccions.each do |puntorecoleccion| %>
+
       <tr>
         <td><%= puntorecoleccion.zona %></td>
         <td><%= puntorecoleccion.nombre %></td>
@@ -29,9 +33,9 @@
         <td><%= link_to 'Destroy', puntorecoleccion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
+  <!-- </tbody>
 </table>
-
+-->
 <br>
 
 <%= link_to 'New Puntorecoleccion', new_puntorecoleccion_path %>

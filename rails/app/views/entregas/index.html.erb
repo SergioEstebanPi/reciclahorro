@@ -15,7 +15,7 @@
   <tbody>
     <% @entregas.each do |entrega| %>
       <tr>
-        <td><%= entrega.vecino.documento %></td>
+        <td><%= entrega.vecino.doc_identidad %></td>
         <td><%= entrega.estado %></td>
         <td><%= entrega.peso %></td>
         <td><%= link_to 'Ver', entrega %></td>

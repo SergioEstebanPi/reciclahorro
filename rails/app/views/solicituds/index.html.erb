@@ -1,18 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-  <div class="container">
-    <h3>Tabs</h3>
-    <ul class="nav nav-pills nav-justified">
-      <li class="active"><a href="#" class="btn btn-light">Todas</a></li>
-      <li class="btn btn-light"><a href="#" >Recientes</a></li>
-      <li class="btn btn-light"><a href="#">Pendientes</a></li>
-      <li class="btn btn-light"><a href="#">Finalizadas</a></li>
-    </ul>
-    <br>
-    <p><strong>Note:</strong> This example shows how to create a basic navigation tab. It is not toggleable/dynamic yet (you can't click on the links to display different content)- see the last example in the Bootstrap Tabs and Pills Tutorial to find out how this can be done.</p>
-  </div>
-
+<!--
   <div class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
@@ -22,7 +11,7 @@
         <a href="#" class="card-link">Another link</a>
       </div>
     </div>
-
+-->
 
   <div class="panel panel-header">
     <div class="panel-body">
@@ -35,8 +24,11 @@
                 <strong><%= solicitud.titulo %></strong>
               </div>
               <div class="card-body">
-                <p><%= solicitud.fecha_recoleccion %></p>
-                <p><%= solicitud.descripcion %></p>
+                <p>
+                  Tiulo: <%= solicitud.titulo %><br>
+                  Fecha recolección: <%= solicitud.fecha_recoleccion %><br>
+                  Descripción: <%= solicitud.descripcion %>
+                </p>
                 <%= link_to 'Ver', solicitud, class:'btn btn-light' %>
                 <%= link_to 'Editar', edit_solicitud_path(solicitud), class:'btn btn-light' %>
                 <%= link_to 'Eliminar', solicitud, method: :delete, data: { confirm: 'Estas seguro?' }, class:'btn btn-light' %>
@@ -53,5 +45,17 @@
 </div>
 
 <br>
+
+<div class="container">
+  <h3>Tabs</h3>
+  <ul class="nav nav-pills nav-justified">
+    <li class="active"><a href="#" class="btn btn-light">Todas</a></li>
+    <li class="btn btn-light"><a href="#" >Recientes</a></li>
+    <li class="btn btn-light"><a href="#">Pendientes</a></li>
+    <li class="btn btn-light"><a href="#">Finalizadas</a></li>
+  </ul>
+  <br>
+  <p><strong>Note:</strong> This example shows how to create a basic navigation tab. It is not toggleable/dynamic yet (you can't click on the links to display different content)- see the last example in the Bootstrap Tabs and Pills Tutorial to find out how this can be done.</p>
+</div>
 
 <%= link_to 'Crear Solicitud', new_solicitud_path, :class => 'btn btn-primary' %>
