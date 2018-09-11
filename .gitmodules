@@ -1,3 +1,6 @@
 [submodule "02-webdeproducto/reciclahorro-web"]
 	path = 02-webdeproducto/reciclahorro-web
 	url = https://github.com/SergioEstebanPi/reciclahorro-web.git
+[submodule "03-backenddeproducto/reciclahorro-api"]
+	path = 03-backenddeproducto/reciclahorro-api
+	url = https://github.com/SergioEstebanPi/reciclahorro-api.git
