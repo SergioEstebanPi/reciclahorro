@@ -1,3 +1,21 @@
-<p>
-  traer-ofertas works!
-</p>
+<h2>Listado de ofertas</h2>
+<table class="table table-hover table-bordered">
+	<thead>
+		<th>Almacen</th>
+    <th>Porcentaje</th>
+    <th>Residuo</th>
+		<th>Acción</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let oferta of ofertas">
+        <td>{{ oferta.almacen.nombre }}</td>
+				<td>{{ oferta.descuento.porcentaje }}</td>
+				<td>{{ oferta.residuo.nombre }}</td>
+				<td>
+					<a (click)="mostraroferta(oferta.id)" class="btn btn-warning">Editar</a>
+					<a (click)="eliminaroferta(oferta.id)" class="btn btn-danger">Eliminar</a>
+				</td>
+			
+		</tr>
+	</tbody>
+</table>

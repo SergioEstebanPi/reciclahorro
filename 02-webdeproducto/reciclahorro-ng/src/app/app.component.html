@@ -1,5 +1,28 @@
 <app-cabecera></app-cabecera>
 <div class="container">
-  <router-outlet></router-outlet>
-</div>
-<app-piedepagina></app-piedepagina>
+  
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 principal">
+              <br>
+              <router-outlet></router-outlet>
+            </div>
+            <div class="col-md-4 sidebar">
+                <br>
+                <h3 class="text-center">Cuida el medio ambiente</h3>
+                <p>Salva el planeta para que las futuras generaciones lo puedan disfrutar al igual que tu lo haces.</p>            
+                <img src="http://www.maquituls.es/noticias/wp-content/uploads/2017/06/reci.jpg" class="img-rounded" alt="Cinque Terre" width="304" height="236"> 
+                <h3>¿Cómo puedo empezar a reciclar ahorrando?</h3>
+                <p>Con Reciclahorro obtienes beneficios en almacenes de cadena puedes solicitar la recolección de tus residuos o entregarlos
+                  en los punto de recolección cercanos a tu hogar, posteriormente se te otorgan los beneficios de los cuales puedes disfrutar
+                  según la oferta realizada por el almacen, el tipo de residuo, el estado y la cantidad que se recicle.
+                </p>
+                <h4>¿Ya estás registrado?</h4>
+                <button class="btn btn-primary" routerLink="/iniciar_sesion">Iniciar sesión</button>
+            </div>        
+        </div>
+    </div>
+    <br>
+    <br>
+    <app-piedepagina></app-piedepagina>
+  </div>
