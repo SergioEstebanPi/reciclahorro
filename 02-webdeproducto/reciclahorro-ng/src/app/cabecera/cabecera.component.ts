@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { UsuariosService } from '../services/usuarios.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-cabecera',
   templateUrl: './cabecera.component.html',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
 
-  constructor() { }
+  autenticado:boolean;
 
-  ngOnInit() {
+  constructor(private _usuarios:UsuariosService,
+              private router:Router) {
+    this.autenticado = false;
   }
 
+  ngOnInit() {
+    this.usuarioAutenticado();
+  }
+
+  usuarioAutenticado(){
+		if (localStorage.getItem("SessionToken")){
+      this.autenticado = true;
+    } else {
+      this.autenticado = false;
+    }
+  }
+
+  cerrarSesion(){
+    localStorage.removeItem('SessionToken');
+    this.router.navigate(['/']);
+  }
 }

@@ -16,12 +16,30 @@ import { UsuariosService } from './services/usuarios.service';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 
+import { SessionGuard } from './guards/session.guard';
+import { CrearOfertaComponent } from './crear-oferta/crear-oferta.component';
+import { ModificarOfertaComponent } from './modificar-oferta/modificar-oferta.component';
+import { TraerDescuentosComponent } from './traer-descuentos/traer-descuentos.component';
+import { TraerProductosComponent } from './traer-productos/traer-productos.component';
+import { CrearProductoComponent } from './crear-producto/crear-producto.component';
+import { ModificarProductoComponent } from './modificar-producto/modificar-producto.component';
+import { CrearDescuentoComponent } from './crear-descuento/crear-descuento.component';
+import { ModificarDescuentoComponent } from './modificar-descuento/modificar-descuento.component';
+
 const rutas:Routes=[
   {path:"", component:InicioComponent},
   {path:"inicio", component:InicioComponent},
   {path:"iniciar_sesion", component:IniciarSesionComponent},
   {path:"crear_cuenta", component:CrearCuentaComponent},
   {path:"traer-ofertas", component:TraerOfertasComponent},
+  {path:"crear-oferta", component:CrearOfertaComponent},
+  {path:"modificar-oferta/:id", component:ModificarOfertaComponent},
+  {path:"traer-descuentos", component:TraerDescuentosComponent},
+  {path:"crear-descuento", component:CrearDescuentoComponent},
+  {path:"modificar-descuento/:id", component:ModificarDescuentoComponent},
+  {path:"traer-productos", component:TraerProductosComponent},
+  {path:"crear-producto", component:CrearProductoComponent},
+  {path:"modificar-producto/:id", component:ModificarProductoComponent},
   {path:"*", redirectTo:'/', pathMatch:'full'}
 ];
 
@@ -33,7 +51,15 @@ const rutas:Routes=[
     PiedepaginaComponent,
     CrearCuentaComponent,
     IniciarSesionComponent,
-    TraerOfertasComponent
+    TraerOfertasComponent,
+    CrearOfertaComponent,
+    ModificarOfertaComponent,
+    TraerDescuentosComponent,
+    TraerProductosComponent,
+    CrearProductoComponent,
+    ModificarProductoComponent,
+    CrearDescuentoComponent,
+    ModificarDescuentoComponent
   ],
   imports: [
     BrowserModule,

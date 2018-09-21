@@ -1,0 +1,22 @@
+<h2>Listado de descuentos</h2>
+<button class="btn btn-success" routerLink="/crear-descuento">Nuevo</button>
+<table class="table table-hover table-bordered">
+	<thead>
+    <th>Titulo</th>
+    <th>Descripcion</th>
+    <th>Porcentaje</th>
+		<th>Acción</th>
+	</thead>
+	<tbody>
+		<tr *ngFor="let descuento of descuentos">
+        <td>{{ descuento.titulo }}</td>
+				<td>{{ descuento.descripcion }}</td>
+				<td>{{ descuento.porcentaje }}</td>
+				<td>
+					<a (click)="mostrardescuento(descuento.id)" class="btn btn-warning">Editar</a>
+					<a (click)="eliminardescuento(descuento.id)" class="btn btn-danger">Eliminar</a>
+				</td>
+			
+		</tr>
+	</tbody>
+</table>
