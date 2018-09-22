@@ -12,7 +12,7 @@
 				<td>{{ producto.descripcion }}</td>
 				<td>
 					<a [routerLink]="['/modificar-producto', producto.id]" class="btn btn-light">Editar</a>
-					<a (click)="eliminarproducto(producto.id)" class="card-link">Eliminar</a>
+					<a (click)="eliminaProducto(producto.id)" class="btn btn-light">Eliminar</a>
 				</td>
 			
 		</tr>
