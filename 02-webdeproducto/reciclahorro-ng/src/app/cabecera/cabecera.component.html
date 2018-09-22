@@ -13,21 +13,21 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/traer-ofertas">Ofertas</a>
       </li>
-      <li class="nav-item" *ngIf="autenticado">
+      <li class="nav-item" *ngIf="usuario">
         <a class="nav-link" routerLink="/traer-descuentos">Descuentos</a>
       </li>
-      <li class="nav-item" *ngIf="autenticado">
+      <li class="nav-item" *ngIf="usuario">
         <a class="nav-link" routerLink="/traer-productos">Productos</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item" *ngIf="!autenticado">
+      <li class="nav-item" *ngIf="!usuario">
         <a class="nav-link" routerLink="/iniciar_sesion">Iniciar Sesión</a>
       </li>
-      <li class="nav-item" *ngIf="!autenticado">
+      <li class="nav-item" *ngIf="!usuario">
         <a class="nav-link" routerLink="/crear_cuenta">Crear cuenta</a>
       </li>
-      <li class="nav-item dropdown" *ngIf="autenticado && usuario">
+      <li class="nav-item dropdown" *ngIf="usuario">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            {{ usuario.email }}
         </a>

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UsuariosService } from '../services/usuarios.service';
-import { SesionService } from '../services/sesion.service';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -12,8 +11,7 @@ export class CrearCuentaComponent implements OnInit {
 
   formulario:any;
 
-  constructor(private _usuarios:UsuariosService,
-							private _sesion:SesionService) {
+  constructor(private _usuarios:UsuariosService) {
     this.formulario = {
       user: {
         name: "",
@@ -37,7 +35,7 @@ export class CrearCuentaComponent implements OnInit {
   						password: this.formulario.user.password
   					}
   				};
-  				this._sesion.iniciarSesion(autenticacion);
+  				//this._usuarios.iniciarSesion(autenticacion);
   			},
   			error => {
   				console.log(error);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SesionService } from '../services/sesion.service';
+import { UsuariosService } from '../services/usuarios.service';
 import { Router } from '@angular/router';
 import { Observable } from '../../../node_modules/rxjs';
 
@@ -12,39 +12,33 @@ import { Input } from '@angular/core';
 })
 export class CabeceraComponent implements OnInit {
   //autenticado:Observable<boolean>;
-  autenticado:boolean;
-  usuario:any;
+  usuario: any;
 
-  constructor(private _sesion:SesionService,
-              private router:Router) {
+  constructor(private _usuarios: UsuariosService,
+    private router: Router) {
+      this.usuario = {
+        nombre: "",
+        email: ""
+      }
+      this._usuarios
+      .usuario
+      .subscribe(
+        respuesta => {
+          this.usuario = respuesta;
+          console.log(respuesta);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   ngOnInit() {
-    //this.autenticado = this._sesion.autenticado;
-    //this.autenticado.subscribe(
-      this._sesion.autenticado.subscribe(
-      respuesta => {
-        if(respuesta){
-          this.autenticado = respuesta;
-          this._sesion.usuarioSesion();
-          this._sesion.usuario.subscribe(
-            respuesta => {
-              this.usuario = respuesta;
-            },
-            error => {
-              console.log(error);
-            }
-          );
-        }
-      },
-      error => {
-        console.log(error);
-      }
-    );
   }
 
-  cerrarSesion(){
-    this._sesion.cerrarSesion();
+  cerrarSesion() {
+    localStorage.removeItem('SessionToken');
+    this.usuario = null;
     this.router.navigate(['/']);
   }
 }
