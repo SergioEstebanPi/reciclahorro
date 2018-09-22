@@ -1,5 +1,6 @@
 nav, .dropdown-menu {
-    background-color: rgb(131, 163, 109);
+    background-color: #4FAE1E; /*rgb(131, 163, 109);*/
+    /* R: 79 G: 174 B: 30*/
 }    
 
 nav a, .dropdown-menu {
