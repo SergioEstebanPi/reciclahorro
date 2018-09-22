@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { UsuariosService } from '../services/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -10,8 +11,10 @@ import { UsuariosService } from '../services/usuarios.service';
 export class CrearCuentaComponent implements OnInit {
 
   formulario:any;
+  error:boolean;
 
-  constructor(private _usuarios:UsuariosService) {
+  constructor(private _usuarios:UsuariosService,
+    private _router: Router) {
     this.formulario = {
       user: {
         name: "",
@@ -20,6 +23,10 @@ export class CrearCuentaComponent implements OnInit {
         password_confirmation: ""
       }
     };
+  }
+
+
+  ngOnInit() {
   }
 
   crearCuenta(){
@@ -35,6 +42,7 @@ export class CrearCuentaComponent implements OnInit {
   						password: this.formulario.user.password
   					}
   				};
+          this.iniciarSesion(autenticacion);
   				//this._usuarios.iniciarSesion(autenticacion);
   			},
   			error => {
@@ -43,8 +51,22 @@ export class CrearCuentaComponent implements OnInit {
   		);
   }
 
-
-  ngOnInit() {
+  iniciarSesion(autenticacion) {
+    this._usuarios
+      .obtenerToken(autenticacion)
+      .subscribe(
+        respuesta => {
+          localStorage.setItem("SessionToken", respuesta.jwt);
+          console.log("Token generado");
+          this._usuarios.buscarUsuario();
+          this.error = false;
+          this._router.navigate(['/']);
+        },
+        error => {
+          this.error = true;
+          console.log(error);
+        }
+      );
   }
 
 }
