@@ -16,6 +16,7 @@ export class CabeceraComponent implements OnInit {
 
   constructor(private _usuarios: UsuariosService,
     private router: Router) {
+    /*
       this.usuario = {
         nombre: "",
         email: ""
@@ -31,14 +32,26 @@ export class CabeceraComponent implements OnInit {
           console.log(error);
         }
       );
+      */
   }
 
   ngOnInit() {
+    this._usuarios
+      .usuario
+      .subscribe(
+        respuesta => {
+          this.usuario = respuesta;
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 
   cerrarSesion() {
     localStorage.removeItem('SessionToken');
-    this.usuario = null;
+    //this.usuario = null;
+    this._usuarios.usuario.next(null);
     this.router.navigate(['/']);
   }
 }

@@ -12,20 +12,11 @@ export class UsuariosService {
 
 	private url: string;
 	private encabezados: any;
-	private encabezadosToken: any;
 	public usuario: BehaviorSubject<Object> = new BehaviorSubject<Object>(false);
 
 	constructor(private http: HttpClient,
 		private _router: Router) {
 		this.url = "http://reciclahorro-api.herokuapp.com";
-		this.encabezadosToken = {
-			headers: new HttpHeaders(
-				{
-					"Content-Type": "application/json",
-					"Authorization": "Bearer " + localStorage.getItem("SessionToken")
-				}
-			)
-		};
 		this.encabezados = {
 			headers: new HttpHeaders(
 				{
@@ -47,31 +38,6 @@ export class UsuariosService {
 		);
 	}
 
-
-	iniciarSesion(formulario) {
-		this.obtenerToken(formulario)
-			.subscribe(
-				respuesta => {
-					localStorage.setItem("SessionToken", respuesta.jwt);
-					console.log("token creado");
-				},
-				error => {
-					console.log(error);
-				}
-			);
-		this.usuarioActual().subscribe(
-			usuario => {
-				this.usuario = usuario;
-				console.log("usuario " + usuario);
-				console.log("this.usuario " + this.usuario);
-				this._router.navigate(['/']);
-			},
-			error => {
-				console.log(error);
-			}
-		);
-	}
-
 	crearCuenta(usuario): Observable<any> {
 		let urlCrearCuenta = this.url + "/users";
 		let parametros = JSON.stringify(usuario);
@@ -81,14 +47,32 @@ export class UsuariosService {
 			this.encabezados
 		);
 	}
+	buscarUsuario(){
+		this.usuarioActual()
+				.subscribe(
+					respuesta => {
+						this.usuario.next(respuesta);
+						this._router.navigate(['/']);
+					},
+					error => {
+						console.log(error);
+					}
+				);
+	}
 
 	usuarioActual(): Observable<any> {
 		let urlUsuario = this.url + "/users/current";
-		console.log("este es el token " + localStorage.getItem("SessionToken"));
+		let encabezadosToken = {
+			headers: new HttpHeaders(
+				{
+					"Content-Type": "application/json",
+					"Authorization": "Bearer " + localStorage.getItem("SessionToken")
+				}
+			)
+		};
 		return this.http.get<any>(
 			urlUsuario,
-			localStorage.getItem("SessionToken") ?
-				this.encabezadosToken : this.encabezados
+			encabezadosToken
 		);
 	}
 }

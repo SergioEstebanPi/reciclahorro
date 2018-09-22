@@ -12,6 +12,7 @@ import { UsuariosService } from '../services/usuarios.service';
 export class IniciarSesionComponent implements OnInit {
 
 	formulario: any;
+	error:boolean;
 
 	constructor(private _usuarios: UsuariosService,
 		private _router: Router) {
@@ -27,6 +28,19 @@ export class IniciarSesionComponent implements OnInit {
 	}
 
 	iniciarSesion() {
-		this._usuarios.iniciarSesion(this.formulario);
+		this._usuarios
+			.obtenerToken(this.formulario)
+			.subscribe(
+				respuesta => {
+					localStorage.setItem("SessionToken", respuesta.jwt);
+					console.log("Token generado");
+					this._usuarios.buscarUsuario();
+					this.error = false;
+				},
+				error => {
+					this.error = true;
+					console.log(error);
+				}
+			);
 	}
 }
