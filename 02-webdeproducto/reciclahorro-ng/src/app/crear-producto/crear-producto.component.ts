@@ -27,7 +27,7 @@ export class CrearProductoComponent implements OnInit {
 		this._productos.crearProducto(this.producto)
 			.subscribe(
 				respuesta => {
-					this._router.navigate(["/mostrar_producto", respuesta['id']]);
+					this._router.navigate(["/traer-productos"]);
 					//console.log(respuesta);
 				},
 				error => {
