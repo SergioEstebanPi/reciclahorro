@@ -12,16 +12,19 @@ export class TraerDescuentosComponent implements OnInit {
   descuentos:Array<any>;
 
   constructor(private _descuentos:DescuentosService) {
-    this.descuentos = [{
+	this.traerDescuentos();
+	/*
+	this.descuentos = [{
   		//id: "",
   		titulo: "",
       descripcion: "",
       porcentaje: ""
-  	}];
+	  }];
+	  */
   }
 
   ngOnInit() {
-    this.traerDescuentos();
+    //this.traerDescuentos();
   }
 
   traerDescuentos(){

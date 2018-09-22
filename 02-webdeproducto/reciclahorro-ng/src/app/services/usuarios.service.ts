@@ -19,10 +19,10 @@ export class UsuariosService {
 	  			"Content-Type": "application/json"
 	  		}
   		)
-  	};
+	  };
   }
 
-  iniciarSesion(autenticacion):Observable<any>{
+  obtenerToken(autenticacion):Observable<any>{
   	let urlAutenticacion = this.url + "/user_token";
   	let parametros = JSON.stringify(autenticacion);
   	return this.http.post<any>(
@@ -39,6 +39,22 @@ export class UsuariosService {
   		urlCrearCuenta,
   		parametros,
   		this.encabezados
+  	);
+  }
+
+  usuarioActual():Observable<any>{
+	let encabezadosToken = {
+		headers: new HttpHeaders(
+			{
+				"Content-Type": "application/json",
+				"Authorization": "Bearer " + localStorage.getItem("SessionToken")
+			}
+		)
+	};
+	let urlUsuario = this.url + "/users/current";
+  	return this.http.get<any>(
+  		urlUsuario,
+  		encabezadosToken
   	);
   }
 }

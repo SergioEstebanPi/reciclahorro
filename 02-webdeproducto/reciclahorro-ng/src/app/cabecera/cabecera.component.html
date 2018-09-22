@@ -8,28 +8,28 @@
       <li class="nav-item active">
         <a class="nav-link" routerLink="/inicio">Inicio</a>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/traer-ofertas">Noticias</a>
+        <a class="nav-link" href="#">Noticias</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/traer-ofertas">Ofertas</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="autenticado">
         <a class="nav-link" routerLink="/traer-descuentos">Descuentos</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="autenticado">
         <a class="nav-link" routerLink="/traer-productos">Productos</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item" *ngIf="true">
+      <li class="nav-item" *ngIf="!autenticado">
         <a class="nav-link" routerLink="/iniciar_sesion">Iniciar Sesión</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="!autenticado">
         <a class="nav-link" routerLink="/crear_cuenta">Crear cuenta</a>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" *ngIf="autenticado && usuario">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          user@domain.com
+           {{ usuario.email }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item">Configuración</a>
