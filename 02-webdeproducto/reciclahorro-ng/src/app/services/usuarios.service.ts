@@ -47,17 +47,22 @@ export class UsuariosService {
 			this.encabezados
 		);
 	}
+
 	buscarUsuario(){
-		this.usuarioActual()
-				.subscribe(
-					respuesta => {
-						this.usuario.next(respuesta);
-						this._router.navigate(['/']);
-					},
-					error => {
-						console.log(error);
-					}
-				);
+		if (localStorage.getItem("SessionToken")) {
+				this.usuarioActual()
+					.subscribe(
+						respuesta => {
+							this.usuario.next(respuesta);
+							this._router.navigate(['/']);
+						},
+						error => {
+							console.log(error);
+						}
+					);
+		} else {
+			this.usuario.next(null);
+		}
 	}
 
 	usuarioActual(): Observable<any> {

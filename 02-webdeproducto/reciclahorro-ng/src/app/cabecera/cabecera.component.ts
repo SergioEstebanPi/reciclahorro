@@ -37,6 +37,8 @@ export class CabeceraComponent implements OnInit {
 
   ngOnInit() {
     this._usuarios
+      .buscarUsuario();
+    this._usuarios
       .usuario
       .subscribe(
         respuesta => {
