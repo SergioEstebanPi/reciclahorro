@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { OfertasService } from '../services/ofertas.service';
+import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
   selector: 'app-traer-ofertas',
@@ -10,16 +11,36 @@ import { OfertasService } from '../services/ofertas.service';
 export class TraerOfertasComponent implements OnInit {
 
   ofertas:Array<any>;
+  usuario: any;
 
-  constructor(private _ofertas:OfertasService) {
+
+  constructor(private _ofertas:OfertasService,
+    private _usuarios: UsuariosService) {
+    //this.ofertas = [];
+    /*
     this.ofertas = [{
   		//id: "",
   		titulo: "",
-  		descripcion: ""
+  		descripcion: "",
+      residuo: "",
+      almacen_id: "",
   	}];
+    */
   }
 
   ngOnInit() {
+    this._usuarios
+      .buscarUsuario();
+    this._usuarios
+      .usuario
+      .subscribe(
+        respuesta => {
+          this.usuario = respuesta;
+        },
+        error => {
+          console.log(error);
+        }
+      );
     this.traerOfertas();
   }
 

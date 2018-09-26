@@ -1,16 +1,5 @@
-body {
-    /*background-color: #fafafa;*/
-    /*background-color: #ffffff;*/
-    background-color: #b3aff51c;
-}
-
-.sidebar {
-    /*background-color: #35682D;*/
-    background-color: rgba(185, 209, 190, 0.356);
-}
-
-.principal {
-    background-color: #ffffff;
+.principal-contenido {
+    background-color: #57798c;
     border-left: solid 2px rgba(128, 128, 128, 0.24);
     padding-left: 10px;
 }
