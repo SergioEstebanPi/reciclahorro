@@ -7,9 +7,14 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { DescuentosPage } from '../pages/descuentos/descuentos';
 import { SolicitudesPage } from '../pages/solicitudes/solicitudes';
+import { OfertasPage } from '../pages/ofertas/ofertas';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { OfertasProvider } from '../providers/ofertas/ofertas';
+
+import { HttpClientModule } from '@angular/common/http';
+import { Globals } from '../globals';
 
 @NgModule({
   declarations: [
@@ -17,11 +22,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     DescuentosPage,
-    SolicitudesPage
+    SolicitudesPage,
+    OfertasPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +36,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     DescuentosPage,
-    SolicitudesPage
+    SolicitudesPage,
+    OfertasPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    OfertasProvider,
+    Globals
   ]
 })
 export class AppModule {}
