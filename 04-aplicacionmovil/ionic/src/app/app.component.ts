@@ -8,6 +8,8 @@ import { ListPage } from '../pages/list/list';
 import { DescuentosPage } from '../pages/descuentos/descuentos';
 import { SolicitudesPage } from '../pages/solicitudes/solicitudes';
 import { OfertasPage } from '../pages/ofertas/ofertas';
+import { TraerProductosPage } from '../pages/traer-productos/traer-productos';
+import { IniciarSesionPage } from '../pages/iniciar-sesion/iniciar-sesion';
 
 @Component({
   templateUrl: 'app.html'
@@ -24,11 +26,13 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Noticias', component: HomePage },
+      { title: 'Inicio', component: HomePage },
       { title: 'Ofertas', component: OfertasPage },
+      { title: 'Productos', component: TraerProductosPage },
       { title: 'List', component: ListPage },
       { title: 'Descuentos', component: DescuentosPage },
-      { title: 'Solicitudes', component: SolicitudesPage }
+      { title: 'Solicitudes', component: SolicitudesPage },
+      { title: 'Iniciar sesion', component: IniciarSesionPage }
     ];
 
   }

@@ -1,0 +1,58 @@
+<!--
+  Generated template for the TraerProductosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Productos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<h2>Productos</h2>
+	<ion-list>
+		<button ion-item *ngFor="let producto of productos" (click)="verproducto(producto.id)">
+			<p>{{producto.titulo}}</p>
+			<p>{{producto.descripcion}}</p>
+			<img src="{{url + producto.imagen}}">
+		</button>
+	</ion-list>
+
+
+    <ion-list>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
+        </ion-thumbnail>
+        <h2>Ruby</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
+        </ion-thumbnail>
+        <h2>Oscar</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
+        </ion-thumbnail>
+        <h2>Zoey</h2>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
+        </ion-thumbnail>
+        <h2>Otto</h2>
+      </ion-item>
+    </ion-list>
+
+</ion-content>
