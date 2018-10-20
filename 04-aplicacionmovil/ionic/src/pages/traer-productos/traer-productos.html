@@ -19,40 +19,15 @@
 <ion-content padding>
 
 	<h2>Productos</h2>
+	<button ion-button full color="secondary" (click)="irA('CrearProductoPage')">Crear producto</button>
 	<ion-list>
 		<button ion-item *ngFor="let producto of productos" (click)="verproducto(producto.id)">
-			<p>{{producto.titulo}}</p>
-			<p>{{producto.descripcion}}</p>
-			<img src="{{url + producto.imagen}}">
+			<ion-thumbnail item-start>
+				<img src="{{url + producto.imagen}}">
+        	</ion-thumbnail>
+        	<h2>{{producto.titulo}}</h2>
+        	<p>{{producto.descripcion}}</p>
 		</button>
 	</ion-list>
-
-
-    <ion-list>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
-        </ion-thumbnail>
-        <h2>Ruby</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
-        </ion-thumbnail>
-        <h2>Oscar</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
-        </ion-thumbnail>
-        <h2>Zoey</h2>
-      </ion-item>
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://blog.oxfamintermon.org/wp-content/uploads/2015/03/por-que-es-importante-reciclar.jpg">
-        </ion-thumbnail>
-        <h2>Otto</h2>
-      </ion-item>
-    </ion-list>
 
 </ion-content>
