@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, App, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -11,20 +11,36 @@ import { OfertasPage } from '../pages/ofertas/ofertas';
 import { TraerProductosPage } from '../pages/traer-productos/traer-productos';
 import { IniciarSesionPage } from '../pages/iniciar-sesion/iniciar-sesion';
 
+import { Events } from 'ionic-angular';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = IniciarSesionPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  usuario:any;
+  email:string;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    public events: Events,
+    private appCtrl: App) {
     this.initializeApp();
 
+    events.subscribe('usuario:created', (usuario, time) => {
+      // usuario and time are the same arguments passed in `events.publish(usuario, time)`
+      console.log('Bienvenido', usuario.email, 'a las', time);
+    });
+
     // used for an example of ngFor and navigation
+    this.pages = [
+      { title: 'Iniciar sesion', component: IniciarSesionPage }
+    ];
+    /*
     this.pages = [
       { title: 'Inicio', component: HomePage },
       { title: 'Ofertas', component: OfertasPage },
@@ -34,8 +50,10 @@ export class MyApp {
       { title: 'Solicitudes', component: SolicitudesPage },
       { title: 'Iniciar sesion', component: IniciarSesionPage }
     ];
+    */
 
   }
+
 
   initializeApp() {
     this.platform.ready().then(() => {

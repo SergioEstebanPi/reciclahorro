@@ -19,7 +19,6 @@
 <ion-content padding>
 
 	<h2>Productos</h2>
-	<button ion-button full color="secondary" (click)="irA('CrearProductoPage')">Crear producto</button>
 	<ion-list>
 		<button ion-item *ngFor="let producto of productos" (click)="verproducto(producto.id)">
 			<ion-thumbnail item-start>
@@ -29,5 +28,9 @@
         	<p>{{producto.descripcion}}</p>
 		</button>
 	</ion-list>
+
+  <ion-fab right bottom>
+     <button ion-fab (click)="irA('CrearProductoPage')"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>	
 
 </ion-content>

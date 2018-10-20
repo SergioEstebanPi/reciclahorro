@@ -35,6 +35,23 @@ export class UsuariosProvider {
   			post<any>(urlAutenticacion,parametros,this.encabezados);
   	}
 
+	usuarioActual(): Observable<any> {
+		let urlUsuario = this.url + "users/current";
+		let encabezadosToken = {
+			headers: new HttpHeaders(
+				{
+					"Content-Type": "application/json",
+					"Authorization": "Bearer " + localStorage.getItem("SessionToken")
+				}
+			)
+		};
+		return this.http.get<any>(
+			urlUsuario,
+			encabezadosToken
+		);
+	}
+
+
     crearCuenta(usuario):Observable<any>{
       let urlCrearCuenta=this.url+"users";
       let parametros=JSON.stringify(usuario);
